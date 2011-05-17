@@ -1,6 +1,7 @@
 class CreateVehicleUnits < ActiveRecord::Migration
   def self.up
     create_table :vehicle_units do |t|
+      
       t.string :name  # equipment_name
       t.string :local_number
       t.string :chasis_number
@@ -12,6 +13,7 @@ class CreateVehicleUnits < ActiveRecord::Migration
       
       t.references :unit_model
       t.references :engine_model
+      t.references :company
       
 
       t.timestamps

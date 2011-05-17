@@ -12,8 +12,41 @@
   <% end %>
 
   <div class="field">
+    <p>
+      <%= f.label :company_id %>
+      <%= f.select(:company_id , Company.selections )  %>
+    </p>
+    
+    <p>
+      <%= label_tag :category %>
+      <%= select_tag(:category , Category.selections )  %>
+    </p>
+    
+    <p>
+      <%= label_tag :classification %>
+      <%= select_tag(:classification , Classification.selections )  %>
+    </p>
+    
+    <p>
+      <%= f.label :unit_model_id %>  <!-- MUST -->
+      <%= f.select(:company_id , Company.selections )   %>
+    </p>
+    
+    <p>
+      <%= label_tag :engine_brand %>
+      <%= select_tag(:engine_brand , EngineBrand.selections )  %>
+    </p>
+    
+    <p> 
+      <%= f.label :engine_model_id %>   <!-- MUST -->
+      <%= f.select(:company_id , Company.selections )    %>
+    </p>
+    
+    
+    <p>
     <%= f.label :local_number %><br />
     <%= f.text_field :local_number %>
+    </p>
   </div>
   <div class="actions">
     <%= f.submit %>

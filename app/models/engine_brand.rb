@@ -1,4 +1,6 @@
+require 'combo'
 class EngineBrand < ActiveRecord::Base
+  include Combo
   has_many :engine_models
   
   def self.selections

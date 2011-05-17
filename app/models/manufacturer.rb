@@ -1,17 +1,17 @@
-# require 'combo.rb'
+require 'combo'
 class Manufacturer < ActiveRecord::Base
-  # include Combo
+  include Combo
   has_many :unit_models
   
-  def self.selections
-    manufacturer_selections_result = {}
-    
-    self.all.each do | manufacturer | 
-        manufacturer_selections_result[manufacturer.name] = manufacturer.id
-    end
-    
-    manufacturer_selections_result
-  end
+  # def self.selections
+  #   manufacturer_selections_result = {}
+  #   
+  #   self.all.each do | manufacturer | 
+  #       manufacturer_selections_result[manufacturer.name] = manufacturer.id
+  #   end
+  #   
+  #   manufacturer_selections_result
+  # end
   
   
 end

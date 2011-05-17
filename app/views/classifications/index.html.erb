@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Category</th>
     <th>Name</th>
     <th></th>
     <th></th>
@@ -10,6 +11,7 @@
 
 <% @classifications.each do |classification| %>
   <tr>
+    <td><%= classification.category.name %></td>
     <td><%= classification.name %></td>
     <td><%= link_to 'Show', classification %></td>
     <td><%= link_to 'Edit', edit_classification_path(classification) %></td>

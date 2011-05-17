@@ -1,4 +1,6 @@
+require 'combo'
 class Category < ActiveRecord::Base
+  include Combo
   has_many :classifications
   
   def self.selections

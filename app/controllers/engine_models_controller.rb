@@ -2,7 +2,7 @@ class EngineModelsController < ApplicationController
   # GET /engine_models
   # GET /engine_models.xml
   def index
-    @engine_models = EngineModel.all
+    @engine_models = EngineModel.all.sort_by { |x| x.engine_brand_id }
 
     respond_to do |format|
       format.html # index.html.erb

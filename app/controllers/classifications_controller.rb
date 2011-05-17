@@ -2,7 +2,8 @@ class ClassificationsController < ApplicationController
   # GET /classifications
   # GET /classifications.xml
   def index
-    @classifications = Classification.all
+    @classifications = Classification.all.sort_by{ | x | x.category_id }
+    
 
     respond_to do |format|
       format.html # index.html.erb

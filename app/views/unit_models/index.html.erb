@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Manufacturer</th>
     <th>Name</th>
     <th></th>
     <th></th>
@@ -10,6 +11,7 @@
 
 <% @unit_models.each do |unit_model| %>
   <tr>
+    <td><%= unit_model.manufacturer.name  %></td>
     <td><%= unit_model.name %></td>
     <td><%= link_to 'Show', unit_model %></td>
     <td><%= link_to 'Edit', edit_unit_model_path(unit_model) %></td>

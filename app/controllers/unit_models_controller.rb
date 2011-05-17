@@ -2,7 +2,7 @@ class UnitModelsController < ApplicationController
   # GET /unit_models
   # GET /unit_models.xml
   def index
-    @unit_models = UnitModel.all
+    @unit_models = UnitModel.all.sort_by{ |x| x.manufacturer_id }
 
     respond_to do |format|
       format.html # index.html.erb

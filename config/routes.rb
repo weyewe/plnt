@@ -14,6 +14,8 @@ Plnt::Application.routes.draw do
   resources :unit_models
   
   resources :engine_models
+  
+  resources :vehicle_units
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

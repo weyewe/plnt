@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Brand</th>
     <th>Name</th>
     <th></th>
     <th></th>
@@ -10,6 +11,7 @@
 
 <% @engine_models.each do |engine_model| %>
   <tr>
+    <td><%= engine_model.engine_brand.name %></td>
     <td><%= engine_model.name %></td>
     <td><%= link_to 'Show', engine_model %></td>
     <td><%= link_to 'Edit', edit_engine_model_path(engine_model) %></td>
