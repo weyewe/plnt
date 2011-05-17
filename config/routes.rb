@@ -1,4 +1,6 @@
 Plnt::Application.routes.draw do
+  devise_for :users
+
   resources :vehicle_units
 
   resources :engine_brands
@@ -16,6 +18,8 @@ Plnt::Application.routes.draw do
   resources :engine_models
   
   resources :vehicle_units
+  
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

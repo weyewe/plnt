@@ -20,35 +20,68 @@
     <p>
       <%= label_tag :category_id %>
       <%= select_tag "category_id", 
-          options_from_collection_for_select(Category.all , "id", "name") %>
+          options_from_collection_for_select(Category.all , "id", "name") ,
+          :order => 1 , :jsclass => "target_onChange" %>
     </p>
     
     <p>
       <%= label_tag :classification_id %>
-      <%= select_tag "classification_id", 
-          options_from_collection_for_select(Classification.all , "id", "name") %>
+      <%=   select_tag "classification_id", 
+              (
+                options_combo_from_collection_for_select(Classification.all , "id", "name", "category_id")
+              ).html_safe , :order => 2 , :jsclass => "target_onChange" %>
     </p>
+    
+    
+    <p>
+      <%= label_tag :manufacturer_id %>  
+      <%= select_tag "manufacturer_id", 
+          options_from_collection_for_select(Manufacturer.all , "id", "name")   %>
+    </p>
+    
     
     <p>
       <%= f.label :unit_model_id %>  <!-- MUST -->
-      <%= f.select(:unit_model_id , UnitModel.selections )   %>
+      <%= f.select(:unit_model_id , UnitModel.selections , :order => 3)   %>
     </p>
     
     <p>
       <%= label_tag :engine_brand_id %>
       <%= select_tag "engine_brand_id", 
-          options_from_collection_for_select(EngineBrand.all , "id", "name") %>
+          options_from_collection_for_select(EngineBrand.all , "id", "name")  %>
     </p>
     
     <p> 
       <%= f.label :engine_model_id %>   <!-- MUST -->
-      <%= f.select(:engine_model_id , EngineModel.selections )    %>
+      <%#= f.select(:engine_model_id , 
+          EngineModel.selections , 
+          :order => 1 , :jsclass => "target_onChange"  )   %>
+      
+      <%= f.select(:engine_model_id ,
+            (
+              options_combo_from_collection_for_select(EngineModel.all , "id", "name", "engine_brand_id")
+            ).html_safe , :order => 1 , :jsclass => "target_onChange"  )   %>
+          
+      <%#= select_tag "engine_model_id", 
+              (
+                options_combo_from_collection_for_select(Classification.all , "id", "name", "category_id")
+              ).html_safe , :order => 2 , :jsclass => "target_onChange" %>
     </p>
     
     
     <p>
     <%= f.label :local_number %><br />
     <%= f.text_field :local_number %>
+    </p>
+    
+    <p>
+    <%= f.label :chasis_number %><br />
+    <%= f.text_field :chasis_number %>
+    </p>
+    
+    <p>
+    <%= f.label :engine_number %><br />
+    <%= f.text_field :engine_number %>
     </p>
   </div>
   <div class="actions">
