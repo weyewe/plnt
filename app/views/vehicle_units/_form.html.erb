@@ -18,28 +18,31 @@
     </p>
     
     <p>
-      <%= label_tag :category %>
-      <%= select_tag(:category , Category.selections )  %>
+      <%= label_tag :category_id %>
+      <%= select_tag "category_id", 
+          options_from_collection_for_select(Category.all , "id", "name") %>
     </p>
     
     <p>
-      <%= label_tag :classification %>
-      <%= select_tag(:classification , Classification.selections )  %>
+      <%= label_tag :classification_id %>
+      <%= select_tag "classification_id", 
+          options_from_collection_for_select(Classification.all , "id", "name") %>
     </p>
     
     <p>
       <%= f.label :unit_model_id %>  <!-- MUST -->
-      <%= f.select(:company_id , Company.selections )   %>
+      <%= f.select(:unit_model_id , UnitModel.selections )   %>
     </p>
     
     <p>
-      <%= label_tag :engine_brand %>
-      <%= select_tag(:engine_brand , EngineBrand.selections )  %>
+      <%= label_tag :engine_brand_id %>
+      <%= select_tag "engine_brand_id", 
+          options_from_collection_for_select(EngineBrand.all , "id", "name") %>
     </p>
     
     <p> 
       <%= f.label :engine_model_id %>   <!-- MUST -->
-      <%= f.select(:company_id , Company.selections )    %>
+      <%= f.select(:engine_model_id , EngineModel.selections )    %>
     </p>
     
     
