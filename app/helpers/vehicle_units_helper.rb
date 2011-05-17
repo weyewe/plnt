@@ -1,0 +1,2 @@
+module VehicleUnitsHelper
+end

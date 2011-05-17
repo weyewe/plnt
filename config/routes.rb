@@ -1,4 +1,6 @@
 Plnt::Application.routes.draw do
+  resources :vehicle_units
+
   resources :engine_brands
 
   resources :manufacturers

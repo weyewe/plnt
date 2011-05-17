@@ -1,0 +1,23 @@
+<h1>Listing vehicle_units</h1>
+
+<table>
+  <tr>
+    <th>Local number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vehicle_units.each do |vehicle_unit| %>
+  <tr>
+    <td><%= vehicle_unit.local_number %></td>
+    <td><%= link_to 'Show', vehicle_unit %></td>
+    <td><%= link_to 'Edit', edit_vehicle_unit_path(vehicle_unit) %></td>
+    <td><%= link_to 'Destroy', vehicle_unit, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vehicle unit', new_vehicle_unit_path %>
