@@ -1,0 +1,2 @@
+module RealAvailabilitiesHelper
+end

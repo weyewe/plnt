@@ -23,6 +23,10 @@ Plnt::Application.routes.draw do
   
   resources :vehicle_units
   
+  resources :target_availabilities
+  
+  resources :real_availabilities
+  
   
 
   # The priority is based upon order of creation:

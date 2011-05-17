@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517125749) do
+ActiveRecord::Schema.define(:version => 20110517131213) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(:version => 20110517125749) do
 
   create_table "manufacturers", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "real_availabilities", :force => true do |t|
+    t.float    "availability"
+    t.integer  "target_availability_id"
+    t.date     "day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "target_availabilities", :force => true do |t|
+    t.float    "target"
+    t.integer  "company_id"
+    t.date     "month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

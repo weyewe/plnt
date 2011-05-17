@@ -1,0 +1,29 @@
+<% total_days = total_days_in_this_month %>
+
+<div id="chart-container-1" style="width: 100%; height: 400px"></div>
+
+
+<table id="mca">
+  <tr class="header">
+    <th>Category</th>
+    <th>Target</th>
+    <th colspan="<%= total_days %>"><%= Time.now.month.to_s + "/" + Time.now.year.to_s %></th>
+  </tr>
+
+  <tr class="header-month-number">
+    <td>.</td>
+    <td>.</td>
+    <% (1..total_days).each do |x|  %>
+      <td><%=  x %></td>
+    <% end %>
+  </tr>
+  
+  <% for company in Company.all %>
+    <%= render :partial => "company_summary" , 
+          :locals => {:company => company, :total_days => total_days} %>
+  <% end %>
+
+
+  
+</table>
+

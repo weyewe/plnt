@@ -7,10 +7,6 @@ module ApplicationHelper
 
     puts options.class 
     options_string = options.map do |element|
-      puts element.inspect
-      puts "The element[0] is #{element[0] }"
-      puts "The element[1] is #{element[1] }"
-      puts "The element[2] is #{element[2] }"
       "<option value=\"#{element[1]}\" " +
        "parent_value=\"#{element[2]}\" >" + 
       "#{element[0]}"  + 
@@ -18,6 +14,14 @@ module ApplicationHelper
     end
 
     options_string.join
+  end
+  
+  def total_days_in_this_month
+    Time.now.end_of_month.day - Time.now.beginning_of_month.day  + 1 
+  end
+  
+  def random_value
+    (100*rand).round
   end
 
 end

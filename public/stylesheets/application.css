@@ -1,0 +1,7 @@
+table#mca tr td { text-align:center;}
+table#mca td.real-availability { width: 50px; cursor: pointer; }
+table#mca td.target-availability{ cursor:pointer;}
+table#mca tr.header-company {background-color: rgb(240,240,240); text-align:left;}
+table#mca tr.header-company td { text-align:left; cursor: pointer;}
+table#mca td.category-name { width : 150px;}
+table#mca td.onHover { background-color: rgb(230,230,230);}

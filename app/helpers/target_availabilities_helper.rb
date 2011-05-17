@@ -1,0 +1,2 @@
+module TargetAvailabilitiesHelper
+end

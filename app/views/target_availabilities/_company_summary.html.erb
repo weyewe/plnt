@@ -1,0 +1,17 @@
+
+
+<tr class="header-company">
+  <td colspan="<%= 2+ total_days %>"><%= company.name %></td>
+</tr>
+
+<% for category in Category.all %>
+  <tr class="body">
+    <td class="category-name"><%= category.name %></td>
+    <td class="target-availability"><%= "." %></td>
+    <% (1..total_days).each do |x| %>
+    <td class="real-availability"><%=  "." %></td>
+    <% end %>
+  </tr>
+<% end %>
+
+
