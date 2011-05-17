@@ -3,7 +3,7 @@ class CreateUnitModels < ActiveRecord::Migration
     create_table :unit_models do |t|
       t.string :name
       t.references :manufacturer
-
+      
       t.timestamps
     end
   end

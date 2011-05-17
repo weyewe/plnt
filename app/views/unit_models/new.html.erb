@@ -1,0 +1,14 @@
+<h1>New unit_model</h1>
+
+
+
+<% if Manufacturer.count > 0 %>
+  <%= render 'form' %>
+
+  <%= link_to 'Back', unit_models_path %>
+<% else %>
+  <p>To create a unit model, you must have manufacturer in the first place</p>
+  <p><%= link_to "Create Manufacturer", new_manufacturer_url %>
+<% end %>
+
+

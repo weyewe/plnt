@@ -3,7 +3,7 @@ class CreateEngineModels < ActiveRecord::Migration
     create_table :engine_models do |t|
       t.string :name
       t.references :engine_brand
-
+      
       t.timestamps
     end
   end

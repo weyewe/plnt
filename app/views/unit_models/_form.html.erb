@@ -1,0 +1,27 @@
+<%= form_for(@unit_model) do |f| %>
+  <% if @unit_model.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@unit_model.errors.count, "error") %> prohibited this unit_model from being saved:</h2>
+
+      <ul>
+      <% @unit_model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p>
+    <%= f.label :manufacturer_id %><br />
+    <%= f.select(:manufacturer_id , Manufacturer.selections ) %>
+    </p>
+    <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+    </p>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

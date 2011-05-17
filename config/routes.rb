@@ -6,6 +6,12 @@ Plnt::Application.routes.draw do
   resources :categories
 
   resources :companies
+  
+  resources :classifications
+  
+  resources :unit_models
+  
+  resources :engine_models
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

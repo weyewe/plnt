@@ -1,0 +1,11 @@
+<h1>New classification</h1>
+
+
+<% if Category.count > 0 %>
+  <%= render 'form' %>
+
+  <%= link_to 'Back', classifications_path %>
+<% else %>
+  <p>To create a classification, you must have category in the first place</p>
+  <p><%= link_to "Create Category", new_category_url %>
+<% end %>

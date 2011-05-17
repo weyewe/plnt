@@ -1,0 +1,10 @@
+<h1>New engine_model</h1>
+
+<% if EngineBrand.count > 0 %>
+  <%= render 'form' %>
+
+  <%= link_to 'Back', engine_models_path %>
+<% else %>
+  <p>To create an engine model, you must have engine brand in the first place</p>
+  <p><%= link_to "Create Engine Brand", new_engine_brand_url %>
+<% end %>

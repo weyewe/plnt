@@ -1,0 +1,23 @@
+<h1>Listing unit_models</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @unit_models.each do |unit_model| %>
+  <tr>
+    <td><%= unit_model.name %></td>
+    <td><%= link_to 'Show', unit_model %></td>
+    <td><%= link_to 'Edit', edit_unit_model_path(unit_model) %></td>
+    <td><%= link_to 'Destroy', unit_model, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Unit model', new_unit_model_path %>

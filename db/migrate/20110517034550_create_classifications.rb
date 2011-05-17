@@ -3,7 +3,6 @@ class CreateClassifications < ActiveRecord::Migration
     create_table :classifications do |t|
       t.string :name
       t.references :category
-
       t.timestamps
     end
   end

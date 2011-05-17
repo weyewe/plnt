@@ -9,6 +9,7 @@
 
 <% @manufacturers.each do |manufacturer| %>
   <tr>
+    <td><%= manufacturer.name %>
     <td><%= link_to 'Show', manufacturer %></td>
     <td><%= link_to 'Edit', edit_manufacturer_path(manufacturer) %></td>
     <td><%= link_to 'Destroy', manufacturer, :confirm => 'Are you sure?', :method => :delete %></td>
