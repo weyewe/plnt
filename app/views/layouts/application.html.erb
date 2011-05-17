@@ -8,7 +8,9 @@
 </head>
 <body>
   
-  <%= render :partial => "layouts/navigation" %>
+  <% if user_signed_in? %>
+    <%= render :partial => "layouts/navigation" %>
+  <% end %>
 
   <%= yield %>
 

@@ -1,6 +1,10 @@
 Plnt::Application.routes.draw do
-  devise_for :users
-
+  
+  root :to => 'public_pages#index'
+  
+  devise_for :users , :path_names => { :sign_in =>  "login" , :sign_out => "logout"}
+  
+  
   resources :vehicle_units
 
   resources :engine_brands
