@@ -24,18 +24,23 @@
   <% end %>
 </table>
 
-<div style="display:none;">
-  <div id="form_target_availability">
-    <h2 id="message-fancybox">Target Availability for month <%= Time.now.month %></h2>
-    <% form_for @target_availability do |f| %>
-      <input type="hidden" id="user_token" name="target_availability[month]" value="<%= Time.now.month %>" />
+<!-- <div style="display:none;"> -->
+<div>
+  <!-- <div id="form_target_availability">
+    <h2 id="message-fancybox">Target Availability for month <%#= Time.now.month %></h2> -->
+    <% form_for @target_availability, :html => { :id=> "target-availability-form"} do |f| %>
+      <input type="hidden" id="month_form" name="month" value="<%= Time.now.month %>" />
+      <input type="hidden" id="year_form" name="year" value="<%= Time.now.year %>" />
+      <input type="hidden" id="value_container" name="value_container" value="" />
+      <input type="hidden" id="company_id_container" name="company_id_container" value="" />
+      <input type="hidden" id="category_id_container" name="category_id_container" value="" />
+      <input type="hidden" id="day_container" name="day_container" value="" />
+      
       <p>
-        <%= f.label :target %>
-        <%= f.text_field :target %><%= "%"%>
-      </p>
-      <p>
-        <%= f.submit %>
+        <%= f.submit  "Update" %>
       </p>
     <% end %>
-  </div>
+  <!-- </div> -->
 </div>
+
+<h2 id="error-notification"></h2>

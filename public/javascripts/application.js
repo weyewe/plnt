@@ -1,22 +1,13 @@
 var chart1;
 jQuery(function() {  
 
-  jQuery("td.target-availability").click(function(){
-    var element  = jQuery(this);
-    
-    var link = jQuery("a", element).attr('href');
-  
-    jQuery.fancybox({
-      'autoDimensions' : false,
-      'width' : 800,
-      'height' : 600,
-      'padding' : 60,
-      'margin' : 20,
-      'centerOnScroll' : true,
-      'href' : link, 
-       onStart : function(){
-      }
-    });
+  jQuery("td.target-availability, td.real-availability").click(function(){
+    var $theTd = $(this);
+    $("span.td-value", $theTd).hide();
+    $("input.td-value", $theTd).attr('changed', 1 );
+    $("input.td-value", $theTd).show().focus();
+
+    return false;
   });
 
   // $("a.new_target_availability").fancybox({
@@ -30,6 +21,75 @@ jQuery(function() {
   //       // alert( $(this) );
   //     }
   //   });
+  
+  jQuery("input#target_availability_submit").click(function(){
+    var value_container = new Array();
+    var company_id_container = new Array();
+    var category_id_container = new Array();
+    var day_container = new Array();
+    
+    var target_value_container = new Array();
+    var target_company_id_container = new Array();
+    var target_category_id_container = new Array();
+    
+    
+    var errorCounter = 0;
+    
+    // alert("Gonna strike");
+    $("table#mca input.td-value").each(function(){
+      var currentInput = $(this);
+      
+      if( currentInput.attr('changed') == "1"){
+        var inputValue = 0;
+        var inputWrapperId = 0;
+        
+        inputValue = parseFloat(currentInput.attr('value'));
+        inputWrapperId = currentInput.parent().attr('id');
+        
+        if( currentInput.hasClass("real"){
+          value_container.push( inputValue );
+          var arrayWrapper = inputWrapperId.split("_");
+          company_id_container.push(  parseInt( arrayWrapper[1] ) );
+          category_id_container.push( parseInt( arrayWrapper[3] ) );
+          day_container.push( parseInt(arrayWrapper[5])  );
+        }else{
+          target_value_container.push( inputValue );
+          var arrayWrapper = inputWrapperId.split("_");
+          target_company_id_container.push(  parseInt( arrayWrapper[1] ) );
+          target_category_id_container.push( parseInt( arrayWrapper[3] ) );
+        }
+        
+        
+        
+        if( inputValue < 0 || inputValue > 100){
+          currentInput.addClass("warning");
+          errorCounter++;
+        }else{
+          if( currentInput.hasClass("warning")){
+            currentInput.removeClass("warning");
+          }
+        }
+      }
+    });
+    // alert("Done striking");
+    // 
+    // alert( "The length of value_container is " + value_container.length);
+    // alert( "The length of company_id_container is " + company_id_container.length );
+    // alert("The length of category_id_container is " + category_id_container.length );
+    // alert("The length of day_container is " + day_container.length );
+    
+    
+    // alert("boom");
+    if( errorCounter > 0 ){
+      alert("Ada " + errorCounter + " error! Perbaiki isian yang berwarna merah!");
+    }else{
+      //submit
+    }
+    
+    return false;
+    
+    
+  });
     
 
 /*
