@@ -46,7 +46,7 @@ jQuery(function() {
         inputValue = parseFloat(currentInput.attr('value'));
         inputWrapperId = currentInput.parent().attr('id');
         
-        if( currentInput.hasClass("real"){
+        if( currentInput.hasClass("target") ){
           value_container.push( inputValue );
           var arrayWrapper = inputWrapperId.split("_");
           company_id_container.push(  parseInt( arrayWrapper[1] ) );
@@ -54,6 +54,7 @@ jQuery(function() {
           day_container.push( parseInt(arrayWrapper[5])  );
         }else{
           target_value_container.push( inputValue );
+          alert("The inputWrapperId is " + inputWrapperId);
           var arrayWrapper = inputWrapperId.split("_");
           target_company_id_container.push(  parseInt( arrayWrapper[1] ) );
           target_category_id_container.push( parseInt( arrayWrapper[3] ) );
@@ -70,7 +71,12 @@ jQuery(function() {
           }
         }
       }
-    });
+    });    // 
+        // alert( "The length of target_value_container is " + target_value_container.length );
+        // 
+        // alert( "The length of target_value_container is " + target_value_container.length );
+        // 
+        // alert( "The length of target_category_id_container is " + target_category_id_container.length );
     // alert("Done striking");
     // 
     // alert( "The length of value_container is " + value_container.length);
@@ -83,7 +89,16 @@ jQuery(function() {
     if( errorCounter > 0 ){
       alert("Ada " + errorCounter + " error! Perbaiki isian yang berwarna merah!");
     }else{
-      //submit
+      $("input#value_container").attr('value' , value_container.join(","));
+      $("input#category_id_container").attr('value' , category_id_container.join(","));
+      $("input#company_id_container").attr('value' , company_id_container.join(","));
+      $("input#day_container").attr('value' , day_container.join(","));
+      
+      $("input#target_value_container").attr('value' , value_container.join(","));
+      $("input#target_company_id_container").attr('value' , value_container.join(","));
+      $("input#v").attr('value' , value_container.join(","));
+      
+      
     }
     
     return false;
