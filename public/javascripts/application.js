@@ -54,7 +54,7 @@ jQuery(function() {
           day_container.push( parseInt(arrayWrapper[5])  );
         }else{
           target_value_container.push( inputValue );
-          alert("The inputWrapperId is " + inputWrapperId);
+          // alert("The inputWrapperId is " + inputWrapperId);
           var arrayWrapper = inputWrapperId.split("_");
           target_company_id_container.push(  parseInt( arrayWrapper[1] ) );
           target_category_id_container.push( parseInt( arrayWrapper[3] ) );
@@ -96,7 +96,7 @@ jQuery(function() {
       
       $("input#target_value_container").attr('value' , value_container.join(","));
       $("input#target_company_id_container").attr('value' , value_container.join(","));
-      $("input#v").attr('value' , value_container.join(","));
+      $("input#value_container").attr('value' , value_container.join(","));
       
       
     }
