@@ -2,8 +2,10 @@ class CreateRealAvailabilities < ActiveRecord::Migration
   def self.up
     create_table :real_availabilities do |t|
       t.float :availability
-      t.references :target_availability
-      t.date :day
+      t.integer :day
+      
+      t.references :category
+      t.references :company
 
       t.timestamps
     end

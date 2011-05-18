@@ -1,16 +1,36 @@
 var chart1;
 jQuery(function() {  
 
+  jQuery("td.target-availability").click(function(){
+    var element  = jQuery(this);
+    
+    var link = jQuery("a", element).attr('href');
+  
+    jQuery.fancybox({
+      'autoDimensions' : false,
+      'width' : 800,
+      'height' : 600,
+      'padding' : 60,
+      'margin' : 20,
+      'centerOnScroll' : true,
+      'href' : link, 
+       onStart : function(){
+      }
+    });
+  });
 
-  // $("a#new_employee").fancybox({
-    // 	'autoDimensions' : false,
-    // 	'width' : 800,
-    // 	'height' : 600,
-    // 	'padding' : 60,
-    // 	'margin' : 20,
-    // 	'centerOnScroll' : true
-    // });
-    // 
+  // $("a.new_target_availability").fancybox({
+  //     'autoDimensions' : false,
+  //     'width' : 800,
+  //     'height' : 600,
+  //     'padding' : 60,
+  //     'margin' : 20,
+  //     'centerOnScroll' : true,
+  //      onStart : function(){
+  //       // alert( $(this) );
+  //     }
+  //   });
+    
 
 /*
 Simple model; though it is more complicated in which the unit model should

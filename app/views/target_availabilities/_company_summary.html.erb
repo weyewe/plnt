@@ -5,11 +5,17 @@
 </tr>
 
 <% for category in Category.all %>
-  <tr class="body">
+  <tr class="body" company_id="<%= company.id %>"  category_id="<%=  category.id %>">
     <td class="category-name"><%= category.name %></td>
-    <td class="target-availability"><%= "." %></td>
+    <td class="target-availability" 
+        id="company_<%= company.id %>_category_<%= category.id %>_target">
+          <%= link_to ".", "#form_target_availability" , :class => "new_target_availability" %>
+    </td>
     <% (1..total_days).each do |x| %>
-    <td class="real-availability"><%=  "." %></td>
+    <td class="real-availability" 
+        id="company_<%= company.id %>_category_<%= category.id %>_day_<%= x %>">
+          <%=  "." %>
+    </td>
     <% end %>
   </tr>
 <% end %>

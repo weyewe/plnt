@@ -3,7 +3,7 @@ class CreateTargetAvailabilities < ActiveRecord::Migration
     create_table :target_availabilities do |t|
       t.float :target
       t.references :company
-      t.date :month
+      t.integer :month
 
       t.timestamps
     end

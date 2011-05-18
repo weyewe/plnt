@@ -22,8 +22,20 @@
     <%= render :partial => "company_summary" , 
           :locals => {:company => company, :total_days => total_days} %>
   <% end %>
-
-
-  
 </table>
 
+<div style="display:none;">
+  <div id="form_target_availability">
+    <h2 id="message-fancybox">Target Availability for month <%= Time.now.month %></h2>
+    <% form_for @target_availability do |f| %>
+      <input type="hidden" id="user_token" name="target_availability[month]" value="<%= Time.now.month %>" />
+      <p>
+        <%= f.label :target %>
+        <%= f.text_field :target %><%= "%"%>
+      </p>
+      <p>
+        <%= f.submit %>
+      </p>
+    <% end %>
+  </div>
+</div>

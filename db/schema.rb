@@ -52,8 +52,9 @@ ActiveRecord::Schema.define(:version => 20110517131213) do
 
   create_table "real_availabilities", :force => true do |t|
     t.float    "availability"
-    t.integer  "target_availability_id"
     t.date     "day"
+    t.integer  "category_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
