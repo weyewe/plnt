@@ -1,0 +1,35 @@
+<h1>Listing breakdowns</h1>
+
+<table>
+  <tr>
+    <th>Hmkm</th>
+    <th>Progress job</th>
+    <th>Rfu estimation</th>
+    <th>Percentage fixed</th>
+    <th>Breakdown date</th>
+    <th>Fixed date</th>
+    <th>Is fixed</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @breakdowns.each do |breakdown| %>
+  <tr>
+    <td><%= breakdown.hmkm %></td>
+    <td><%= breakdown.progress_job %></td>
+    <td><%= breakdown.rfu_estimation %></td>
+    <td><%= breakdown.percentage_fixed %></td>
+    <td><%= breakdown.breakdown_date %></td>
+    <td><%= breakdown.fixed_date %></td>
+    <td><%= breakdown.is_fixed %></td>
+    <td><%= link_to 'Show', breakdown %></td>
+    <td><%= link_to 'Edit', edit_breakdown_path(breakdown) %></td>
+    <td><%= link_to 'Destroy', breakdown, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Breakdown', new_breakdown_path %>

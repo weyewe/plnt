@@ -10,7 +10,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517131213) do
+ActiveRecord::Schema.define(:version => 20110519140441) do
+
+  create_table "availabilities", :force => true do |t|
+    t.float    "value"
+    t.integer  "company_id"
+    t.integer  "category_id"
+    t.integer  "month"
+    t.integer  "year"
+    t.integer  "day"
+    t.boolean  "target"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "breakdown_statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "breakdowns", :force => true do |t|
+    t.integer  "hmkm"
+    t.text     "progress_job"
+    t.text     "rfu_estimation"
+    t.integer  "percentage_fixed"
+    t.date     "breakdown_date"
+    t.date     "fixed_date"
+    t.boolean  "is_fixed"
+    t.integer  "company_id"
+    t.integer  "category_id"
+    t.integer  "breakdown_status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -46,23 +79,6 @@ ActiveRecord::Schema.define(:version => 20110517131213) do
 
   create_table "manufacturers", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "real_availabilities", :force => true do |t|
-    t.float    "availability"
-    t.date     "day"
-    t.integer  "category_id"
-    t.integer  "company_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "target_availabilities", :force => true do |t|
-    t.float    "target"
-    t.integer  "company_id"
-    t.date     "month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

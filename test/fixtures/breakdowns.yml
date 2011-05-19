@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  hmkm: 1
+  progress_job: MyText
+  rfu_estimation: MyText
+  percentage_fixed: 1
+  breakdown_date: 2011-05-19
+  fixed_date: 2011-05-19
+  is_fixed: false
+
+two:
+  hmkm: 1
+  progress_job: MyText
+  rfu_estimation: MyText
+  percentage_fixed: 1
+  breakdown_date: 2011-05-19
+  fixed_date: 2011-05-19
+  is_fixed: false

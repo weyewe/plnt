@@ -1,0 +1,57 @@
+<%= form_for(@breakdown) do |f| %>
+  <% if @breakdown.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@breakdown.errors.count, "error") %> prohibited this breakdown from being saved:</h2>
+
+      <ul>
+      <% @breakdown.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :hmkm %><br />
+    <%= f.text_field :hmkm %>
+  </div>
+  <div class="field">
+    <%= f.label :progress_job %><br />
+    <%= f.text_area :progress_job , :cols => 40, :rows => 5 %>
+  </div>
+  <div class="field">
+    <%= f.label :rfu_estimation %><br />
+    <%= f.text_area :rfu_estimation  , :cols => 40, :rows => 5%>
+  </div>
+  <div class="field">
+    <%= f.label :percentage_fixed %><br />
+    <%= f.text_field :percentage_fixed %><%= "%" %>
+  </div>
+  <div class="field">
+    <%= f.label :breakdown_date %><br />
+    <%= f.date_select :breakdown_date %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :is_fixed %><br />
+    <%= f.check_box :is_fixed %>
+  </div>
+  
+  <div class="field hidden" id="fixed-date-breakdown">
+    <%= f.label :fixed_date %><br />
+    <%= f.date_select :fixed_date %>
+  </div>
+  <script type="text/javascript" >
+    $("input#breakdown_is_fixed").click( function () {
+      var n = $("#breakdown_is_fixed:checked").length;
+      if( n == 1 ){
+        $("div#fixed-date-breakdown").fadeIn();
+      }else if( n == 0 ){
+        $("div#fixed-date-breakdown").fadeOut();
+      }
+    });
+  </script>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

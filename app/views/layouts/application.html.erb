@@ -3,7 +3,12 @@
 <head>
   <title>Plnt</title>
   <%= stylesheet_link_tag :all , "application"%>
-  <%= javascript_include_tag  "jquery", "highcharts/js/highcharts.js",   "application" %>
+  <%= javascript_include_tag  "jquery" %>
+  <% if params[:controller] == "availabilities" && params[:action] == "index" %>
+    <%= javascript_include_tag  "highcharts/js/highcharts.js", "application_plotter" %>
+  <% end %>
+  <%= javascript_include_tag   "application" %>
+  
  
   
   <%= csrf_meta_tag %>

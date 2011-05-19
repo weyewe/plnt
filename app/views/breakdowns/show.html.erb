@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Hmkm:</b>
+  <%= @breakdown.hmkm %>
+</p>
+
+<p>
+  <b>Progress job:</b>
+  <%= @breakdown.progress_job %>
+</p>
+
+<p>
+  <b>Rfu estimation:</b>
+  <%= @breakdown.rfu_estimation %>
+</p>
+
+<p>
+  <b>Percentage fixed:</b>
+  <%= @breakdown.percentage_fixed %>
+</p>
+
+<p>
+  <b>Breakdown date:</b>
+  <%= @breakdown.breakdown_date %>
+</p>
+
+<p>
+  <b>Fixed date:</b>
+  <%= @breakdown.fixed_date %>
+</p>
+
+<p>
+  <b>Is fixed:</b>
+  <%= @breakdown.is_fixed %>
+</p>
+
+
+<%= link_to 'Edit', edit_breakdown_path(@breakdown) %> |
+<%= link_to 'Back', breakdowns_path %>

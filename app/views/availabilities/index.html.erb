@@ -28,7 +28,7 @@
 <div>
   <!-- <div id="form_target_availability">
     <h2 id="message-fancybox">Target Availability for month <%#= Time.now.month %></h2> -->
-    <% form_for @target_availability, :html => { :id=> "target-availability-form"} do |f| %>
+    <% form_for @availability, :html => { :id=> "target-availability-form"} do |f| %>
       <input type="hidden" id="month_form" name="month" value="<%= Time.now.month %>" />
       <input type="hidden" id="year_form" name="year" value="<%= Time.now.year %>" />
       <input type="hidden" id="value_container" name="value_container" value="" />

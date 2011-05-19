@@ -1,0 +1,62 @@
+
+
+<tr class="header-company">
+  <td colspan="<%= 2+ total_days %>"><%= company.name %></td>
+</tr>
+
+<% for category in Category.all %>
+  <tr class="body" company_id="<%= company.id %>"  category_id="<%=  category.id %>">
+    <td class="category-name"><%= category.name %></td>
+    
+    
+    <td class="target-availability" 
+        id="company_<%= company.id %>_category_<%= category.id %>_target" >
+          
+          <% target_availability = @availabilities.find do |e|
+            e.month == Time.now.month.to_i &&
+            e.year == Time.now.year.to_i &&
+            e.company_id == company.id &&
+            e.category_id == category.id &&
+            e.target == true
+          end %>
+          
+          <% if target_availability.nil? %>
+            <span class="td-value">.</span>
+            <input type="text" size="3" name="target_availability" class="td-value hidden target" maxlength="5" />
+          <% else %>
+            <span class="td-value"><%= target_availability.value %></span>
+            <input type="text" size="3" name="target_availability" 
+              class="td-value hidden target" maxlength="5" value="<%= target_availability.value %>" />
+          <% end %>
+          
+          <%#= link_to ".", "#form_target_availability" , :class => "new_target_availability" %>
+    </td>
+    
+    
+    <% (1..total_days).each do |x| %>
+    <td class="real-availability" 
+        id="company_<%= company.id %>_category_<%= category.id %>_day_<%= x %>">         
+         <% real_availability = @availabilities.find do |e| 
+           e.month == Time.now.month.to_i &&
+           e.year == Time.now.year.to_i && 
+           e.company_id == company.id &&
+           e.category_id == category.id &&
+           e.day == x &&
+           e.target == false
+         end   %>
+
+         <% if  real_availability.nil? %>
+           <span class="td-value">.</span>  
+           <input type="text" size="3" name="real_availability" class="td-value real hidden" maxlength="5" />
+         <% else %>
+           <span class="td-value"><%= real_availability.value %></span>  
+           <input type="text" size="3" name="real_availability" 
+                  class="td-value real hidden" maxlength="5" value="<%= real_availability.value %>" />
+         <% end %>
+          
+    </td>
+    <% end %>
+  </tr>
+<% end %>
+
+

@@ -1,9 +1,9 @@
 Plnt::Application.routes.draw do
-  
+  resources :breakdowns
+
   root :to => 'public_pages#index'
   
   devise_for :users , :path_names => { :sign_in =>  "login" , :sign_out => "logout"}
-  
   
   resources :vehicle_units
 
@@ -23,9 +23,11 @@ Plnt::Application.routes.draw do
   
   resources :vehicle_units
   
-  resources :target_availabilities
+  resources :availabilities
+    
+  resources :breakdown_statuses
   
-  resources :real_availabilities
+  
   
   
 

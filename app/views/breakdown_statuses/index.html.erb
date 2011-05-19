@@ -1,0 +1,23 @@
+<h1>Listing breakdown_statuses</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @breakdown_statuses.each do |breakdown_status| %>
+  <tr>
+    <td><%= breakdown_status.name %></td>
+    <td><%= link_to 'Show', breakdown_status %></td>
+    <td><%= link_to 'Edit', edit_breakdown_status_path(breakdown_status) %></td>
+    <td><%= link_to 'Destroy', breakdown_status, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Breakdown status', new_breakdown_status_path %>

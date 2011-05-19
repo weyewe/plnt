@@ -1,4 +1,4 @@
-var chart1;
+
 jQuery(function() {  
 
   jQuery("td.target-availability, td.real-availability").click(function(){
@@ -22,7 +22,7 @@ jQuery(function() {
   //     }
   //   });
   
-  jQuery("input#target_availability_submit").click(function(){
+  jQuery("input#availability_submit").click(function(){
     var value_container = new Array();
     var company_id_container = new Array();
     var category_id_container = new Array();
@@ -35,7 +35,7 @@ jQuery(function() {
     
     var errorCounter = 0;
     
-    // alert("Gonna strike");
+    alert("Gonna strike");
     $("table#mca input.td-value").each(function(){
       var currentInput = $(this);
       
@@ -46,7 +46,7 @@ jQuery(function() {
         inputValue = parseFloat(currentInput.attr('value'));
         inputWrapperId = currentInput.parent().attr('id');
         
-        if( currentInput.hasClass("target") ){
+        if( currentInput.hasClass("real") ){
           value_container.push( inputValue );
           var arrayWrapper = inputWrapperId.split("_");
           company_id_container.push(  parseInt( arrayWrapper[1] ) );
@@ -71,37 +71,36 @@ jQuery(function() {
           }
         }
       }
-    });    // 
-        // alert( "The length of target_value_container is " + target_value_container.length );
-        // 
-        // alert( "The length of target_value_container is " + target_value_container.length );
-        // 
-        // alert( "The length of target_category_id_container is " + target_category_id_container.length );
-    // alert("Done striking");
-    // 
-    // alert( "The length of value_container is " + value_container.length);
-    // alert( "The length of company_id_container is " + company_id_container.length );
-    // alert("The length of category_id_container is " + category_id_container.length );
-    // alert("The length of day_container is " + day_container.length );
+    });    
+
+    alert("errorCounter = " + errorCounter);
     
-    
-    // alert("boom");
     if( errorCounter > 0 ){
       alert("Ada " + errorCounter + " error! Perbaiki isian yang berwarna merah!");
+      return false;
     }else{
+      // alert("gonna update");
+      // alert("value_container's length is " + value_container.length );
       $("input#value_container").attr('value' , value_container.join(","));
       $("input#category_id_container").attr('value' , category_id_container.join(","));
       $("input#company_id_container").attr('value' , company_id_container.join(","));
       $("input#day_container").attr('value' , day_container.join(","));
       
-      $("input#target_value_container").attr('value' , value_container.join(","));
-      $("input#target_company_id_container").attr('value' , value_container.join(","));
-      $("input#value_container").attr('value' , value_container.join(","));
+      $("input#target_value_container").attr('value' , target_value_container.join(","));
+      $("input#target_company_id_container").attr('value' , target_company_id_container.join(","));
+      $("input#target_category_id_container").attr('value' , target_category_id_container.join(","));
       
+      // alert("The content of value_container is " + $("input#value_container").attr('value') );
+      // alert("The content of category_id_container is " + $("input#category_id_container").attr('value') );
+      // alert("The content of company_id_container is " + $("input#company_id_container").attr('value') );
+      // alert("The content of day_container is " + $("input#day_container").attr('value') );
       
+      // alert("The content of target_value_container is " + $("input#target_value_container").attr('value') );
+      // alert("The content of target_category_id_container is " + $("input#target_category_id_container").attr('value') );
+      // alert("The content of target_company_id_container is " + $("input#target_company_id_container").attr('value') );
     }
     
-    return false;
+    
     
     
   });
@@ -130,45 +129,45 @@ However, due to time constraint, let them self-filter, better space to breathe
     }
   );
 
-  chart1 = new Highcharts.Chart({
-    chart: {
-      renderTo: 'chart-container-1',
-      defaultSeriesType: 'bar'
-    },
-    title: {
-      text: 'Monthly Control Availability'
-    },
-    xAxis: {
-      categories: ['1','2','3','4','5','6','7','8','9','10',
-                  '11','12','13','14','15','16','17','18','19','20',
-                  '21','22','23','24','25','26','27','28','29','30']
-    },
-    yAxis: {
-      title: {
-        text: 'Physical Availability (A2B)'
-      }
-    },
-    series: [{
-      type: 'column',
-      name: 'TBP',
-      data: [29, 51, 68, 94, 96, 91, 97, 1, 55, 17, 72, 44, 31, 12, 6, 87, 64, 69, 68, 50, 16, 89, 65, 37, 46, 12, 25, 84, 12, 54] 
-    }, {
-      type: 'column',
-      name: 'GPS',
-      data: [61, 45, 47, 1, 44, 27, 95, 53, 21, 15, 78, 11, 94, 23, 36, 70, 31, 88, 75, 26, 90, 90, 5, 19, 14, 82, 74, 62, 30, 31]
-    }, {
-      type: 'column',
-      name: 'KPT',
-      data: [79, 22, 42, 53, 83, 62, 20, 42, 10, 52, 34, 64, 5, 56, 73, 69, 25, 18, 0, 53, 6, 11, 12, 68, 21, 6, 52, 94, 97, 26]
-    }, {
-      type: 'spline',
-      name: 'target',
-      data: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80] 
-    }]
-    });
+  // chart1 = new Highcharts.Chart({
+  //    chart: {
+  //      renderTo: 'chart-container-1',
+  //      defaultSeriesType: 'bar'
+  //    },
+  //    title: {
+  //      text: 'Monthly Control Availability'
+  //    },
+  //    xAxis: {
+  //      categories: ['1','2','3','4','5','6','7','8','9','10',
+  //                  '11','12','13','14','15','16','17','18','19','20',
+  //                  '21','22','23','24','25','26','27','28','29','30']
+  //    },
+  //    yAxis: {
+  //      title: {
+  //        text: 'Physical Availability (A2B)'
+  //      }
+  //    },
+  //    series: [{
+  //      type: 'column',
+  //      name: 'TBP',
+  //      data: [29, 51, 68, 94, 96, 91, 97, 1, 55, 17, 72, 44, 31, 12, 6, 87, 64, 69, 68, 50, 16, 89, 65, 37, 46, 12, 25, 84, 12, 54] 
+  //    }, {
+  //      type: 'column',
+  //      name: 'GPS',
+  //      data: [61, 45, 47, 1, 44, 27, 95, 53, 21, 15, 78, 11, 94, 23, 36, 70, 31, 88, 75, 26, 90, 90, 5, 19, 14, 82, 74, 62, 30, 31]
+  //    }, {
+  //      type: 'column',
+  //      name: 'KPT',
+  //      data: [79, 22, 42, 53, 83, 62, 20, 42, 10, 52, 34, 64, 5, 56, 73, 69, 25, 18, 0, 53, 6, 11, 12, 68, 21, 6, 52, 94, 97, 26]
+  //    }, {
+  //      type: 'spline',
+  //      name: 'target',
+  //      data: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80] 
+  //    }]
+  //    });
 
 
 
-
+  
 });
 
