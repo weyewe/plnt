@@ -12,6 +12,21 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :breakdown_status_id %><br />
+    <%= f.select(:breakdown_status_id , BreakdownStatus.selections ) %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :company_id %><br />
+    <%= f.select(:company_id , Company.selections ) %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.select(:category_id , Category.selections ) %>
+  </div>
+
+  <div class="field">
     <%= f.label :hmkm %><br />
     <%= f.text_field :hmkm %>
   </div>
