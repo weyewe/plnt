@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_in_path_for (resource)
-    companies_url
+    if current_user.has_role? :entry 
+      companies_url
+    elsif current_user.has_role? :director
+      availabilities_url
+    end
   end
 end

@@ -13,8 +13,8 @@
         id="company_<%= company.id %>_category_<%= category.id %>_target" >
           
           <% target_availability = @availabilities.find do |e|
-            e.month == Time.now.month.to_i &&
-            e.year == Time.now.year.to_i &&
+            e.month == @month.to_i &&
+            e.year == @year.to_i &&
             e.company_id == company.id &&
             e.category_id == category.id &&
             e.target == true
@@ -37,8 +37,8 @@
     <td class="real-availability" 
         id="company_<%= company.id %>_category_<%= category.id %>_day_<%= x %>">         
          <% real_availability = @availabilities.find do |e| 
-           e.month == Time.now.month.to_i &&
-           e.year == Time.now.year.to_i && 
+           e.month == @month.to_i &&
+           e.year == @year.to_i && 
            e.company_id == company.id &&
            e.category_id == category.id &&
            e.day == x &&

@@ -1,9 +1,13 @@
 <div id="major-navigator">
-  <%= link_to "Admin" , companies_url %>
+  
+  <% if current_user.has_role? :entry %>
+    <%= link_to "Admin" , companies_url %>
+  <% end %>
   <%= link_to "Summary", availabilities_url  %>
   <%= link_to "SignOut", destroy_user_session_url %>
 </div>
 
+<% if current_user.has_role? :entry %>
 <div id="minor-navigator">
   <ul>
     <li>
@@ -50,3 +54,4 @@
 
   </ul>
 </div>
+<% end %>

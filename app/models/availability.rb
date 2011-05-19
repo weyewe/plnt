@@ -15,11 +15,17 @@ class Availability < ActiveRecord::Base
   end
   
   def self.create_availability_hash( category_id , index , is_target)
-    values = @params_hash[:value_container]
+    company_string = ""
+    if is_target
+      company_string = "target_company_id_container"
+    else
+      company_string = "company_id_container"
+    end
+    
     company_ids = @params_hash[:company_id_container]
     
     availability_hash = {:month => @month, :year => @year, 
-      :company_id => company_ids[index].to_i, 
+      :company_id => @params_hash[company_string.to_sym][index].to_i, 
       :category_id => category_id.to_i, :target => is_target}
       
     if not is_target

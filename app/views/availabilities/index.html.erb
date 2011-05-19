@@ -1,13 +1,13 @@
-<% total_days = total_days_in_this_month %>
-
-<div id="chart-container-1" style="width: 100%; height: 400px"></div>
+<% total_days = total_days_in_this_month( @year, @month) %>
 
 
+
+<h1>Monthly Control Availability</h1>
 <table id="mca">
   <tr class="header">
     <th>Category</th>
     <th>Target</th>
-    <th colspan="<%= total_days %>"><%= Time.now.month.to_s + "/" + Time.now.year.to_s %></th>
+    <th colspan="<%= total_days %>"><%= @month.to_s+ "/" + @year.to_s %></th>
   </tr>
 
   <tr class="header-month-number">
@@ -50,3 +50,5 @@
 </div>
 
 <h2 id="error-notification"></h2>
+
+<div id="chart-container-1" style="width: 100%; height: 400px"></div>

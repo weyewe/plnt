@@ -16,9 +16,14 @@ module ApplicationHelper
     options_string.join
   end
   
-  def total_days_in_this_month
-    Time.now.end_of_month.day - Time.now.beginning_of_month.day  + 1 
+  # def total_days_in_this_month
+  #   Time.now.end_of_month.day - Time.now.beginning_of_month.day  + 1 
+  # end
+  
+  def total_days_in_this_month(year, month)
+    Time.local( year, month ).end_of_month.day - Time.local( year, month ).beginning_of_month.day  + 1 
   end
+  
   
   def random_value
     (100*rand).round
