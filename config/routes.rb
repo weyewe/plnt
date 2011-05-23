@@ -1,6 +1,7 @@
 Plnt::Application.routes.draw do
-  resources :breakdowns
   match 'breakdowns/show_breakdowns_on_date' => 'breakdowns#show_breakdowns_on_date', :as => :show_breakdowns_on_date
+  resources :breakdowns
+  
 
   root :to => 'public_pages#index'
   

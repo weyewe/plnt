@@ -36,23 +36,25 @@
 <div>
   <!-- <div id="form_target_availability">
     <h2 id="message-fancybox">Target Availability for month <%#= Time.now.month %></h2> -->
-    <% form_for @availability, :html => { :id=> "target-availability-form"} do |f| %>
-      <input type="hidden" id="month_form" name="month" value="<%= Time.now.month %>" />
-      <input type="hidden" id="year_form" name="year" value="<%= Time.now.year %>" />
-      <input type="hidden" id="value_container" name="value_container" value="" />
-      <input type="hidden" id="company_id_container" name="company_id_container" value="" />
-      <input type="hidden" id="category_id_container" name="category_id_container" value="" />
-      <input type="hidden" id="day_container" name="day_container" value="" />
+    <% if current_user.has_role? :entry %>
+      <% form_for @availability, :html => { :id=> "target-availability-form"} do |f| %>
+        <input type="hidden" id="month_form" name="month" value="<%= Time.now.month %>" />
+        <input type="hidden" id="year_form" name="year" value="<%= Time.now.year %>" />
+        <input type="hidden" id="value_container" name="value_container" value="" />
+        <input type="hidden" id="company_id_container" name="company_id_container" value="" />
+        <input type="hidden" id="category_id_container" name="category_id_container" value="" />
+        <input type="hidden" id="day_container" name="day_container" value="" />
       
       
-      <input type="hidden" id="target_value_container" name="target_value_container" value="" />
-      <input type="hidden" id="target_company_id_container" name="target_company_id_container" value="" />
-      <input type="hidden" id="target_category_id_container" name="target_category_id_container" value="" />
+        <input type="hidden" id="target_value_container" name="target_value_container" value="" />
+        <input type="hidden" id="target_company_id_container" name="target_company_id_container" value="" />
+        <input type="hidden" id="target_category_id_container" name="target_category_id_container" value="" />
       
       
-      <p>
-        <%= f.submit  "Update" %>
-      </p>
+        <p>
+          <%= f.submit  "Update" %>
+        </p>
+      <% end %>
     <% end %>
   <!-- </div> -->
 </div>

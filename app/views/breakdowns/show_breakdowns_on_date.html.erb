@@ -1,0 +1,27 @@
+<h2>Breakdown List on <%= Time.local(@year,@month, @day)%> </h2>
+
+<%= link_to "Back", availabilities_url %>
+
+<table>
+  <tr>
+    <th>Hmkm</th>
+    <th>Progress job</th>
+    <th>Rfu estimation</th>
+    <th>Percentage fixed</th>
+    <th>Breakdown date</th>
+    <th>Fixed date</th>
+    <th>Is fixed</th>
+  </tr>
+
+<% @breakdowns.each do |breakdown| %>
+  <tr>
+    <td><%= breakdown.hmkm %></td>
+    <td><%= breakdown.progress_job %></td>
+    <td><%= breakdown.rfu_estimation %></td>
+    <td><%= breakdown.percentage_fixed %></td>
+    <td><%= breakdown.breakdown_date %></td>
+    <td><%= breakdown.fixed_date %></td>
+    <td><%= breakdown.is_fixed %></td>
+  </tr>
+<% end %>
+</table>

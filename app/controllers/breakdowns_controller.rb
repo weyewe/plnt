@@ -80,4 +80,19 @@ class BreakdownsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def show_breakdowns_on_date
+    @month = params[:month].to_i
+    @day = params[:day].to_i
+    @year = params[:year].to_i 
+    
+    @breakdowns = Breakdown.where( "fixed_date >  :fixed_date",  :fixed_date => Time.local(@year, @month, @day) )
+    
+    # @breakdowns = Breakdown.find(:all, :conditions => {
+    #   :month => @month, 
+    #   :day => @day,
+    #   :year => @year,
+    #   
+    # })
+  end
 end
