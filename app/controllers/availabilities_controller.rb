@@ -1,12 +1,28 @@
 class AvailabilitiesController < ApplicationController
   def index
     @availability = Availability.new 
-    @month = Time.now.month
-    @year = Time.now.year
-    @availabilities = Availability.find(:all, :conditions => {
-      :year => Time.now.year.to_i,
-      :month => Time.now.month.to_i
-    })
+    
+    if params[:direction].nil? 
+      @month = Time.now.month
+      @year = Time.now.year
+      @availabilities = Availability.find(:all, :conditions => {
+        :year => @year.to_i,
+        :month => @month.to_i
+      })
+    else
+      if params[:direction] == "next"
+        time = Time.local( params[:year].to_i , params[:month].to_i).next_month
+      elsif params[:direction] == "prev"
+        time = Time.local( params[:year].to_i , params[:month].to_i).prev_month
+      end
+      @month = time.month
+      @year = time.year
+      @availabilities = Availability.find(:all, :conditions => {
+        :year => @year.to_i,
+        :month => @month.to_i
+      })
+    end
+    
   end
   
   def create

@@ -1,7 +1,7 @@
-
-
 <tr class="header-company">
-  <td colspan="<%= 2+ total_days %>"><%= company.name %></td>
+  <td colspan="<%= 2+ total_days %>">
+    <span><%= link_to company.name ,"#", :id  => "company_#{company.id}", :class => "graph-starter"  %></span>
+  </td>
 </tr>
 
 <% for category in Category.all %>
@@ -21,7 +21,7 @@
           end %>
           
           <% if target_availability.nil? %>
-            <span class="td-value">.</span>
+            <span class="td-value still-nil">.</span>
             <input type="text" size="3" name="target_availability" class="td-value hidden target" maxlength="5" />
           <% else %>
             <span class="td-value"><%= target_availability.value %></span>
@@ -29,7 +29,6 @@
               class="td-value hidden target" maxlength="5" value="<%= target_availability.value %>" />
           <% end %>
           
-          <%#= link_to ".", "#form_target_availability" , :class => "new_target_availability" %>
     </td>
     
     
@@ -46,7 +45,7 @@
          end   %>
 
          <% if  real_availability.nil? %>
-           <span class="td-value">.</span>  
+           <span class="td-value still-nil">.</span>  
            <input type="text" size="3" name="real_availability" class="td-value real hidden" maxlength="5" />
          <% else %>
            <span class="td-value"><%= real_availability.value %></span>  

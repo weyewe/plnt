@@ -3,6 +3,12 @@
 
 
 <h1>Monthly Control Availability</h1>
+<br />
+<br />
+<%= link_to "Bulan Sebelumnya" , availabilities_url(:direction => "prev", :month => @month, :year => @year) %>
+<%= link_to "Bulan Berikutnya" , availabilities_url(:direction => "next", :month => @month, :year => @year) %>
+<br />
+<br />
 <table id="mca">
   <tr class="header">
     <th>Category</th>
@@ -14,7 +20,7 @@
     <td>.</td>
     <td>.</td>
     <% (1..total_days).each do |x|  %>
-      <td><%=  x %></td>
+      <td class="day"><%=  x %></td>
     <% end %>
   </tr>
   
@@ -51,4 +57,15 @@
 
 <h2 id="error-notification"></h2>
 
-<div id="chart-container-1" style="width: 100%; height: 400px"></div>
+
+<% for category in Category.all %>
+  <div id="chart-container-<%= category.id %>" style="width: 100%; height: 400px" ></div>
+<% end %>
+
+
+<!-- <div id="chart-container-1" style="width: 100%; height: 400px"></div> -->
+
+
+<div id="data_plot" class="hidden">
+  
+</div>

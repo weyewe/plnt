@@ -1,4 +1,4 @@
-
+var chartArray= new Array();
 jQuery(function() {  
 
   jQuery("td.target-availability, td.real-availability").click(function(){
@@ -9,18 +9,6 @@ jQuery(function() {
 
     return false;
   });
-
-  // $("a.new_target_availability").fancybox({
-  //     'autoDimensions' : false,
-  //     'width' : 800,
-  //     'height' : 600,
-  //     'padding' : 60,
-  //     'margin' : 20,
-  //     'centerOnScroll' : true,
-  //      onStart : function(){
-  //       // alert( $(this) );
-  //     }
-  //   });
   
   jQuery("input#availability_submit").click(function(){
     var value_container = new Array();
@@ -35,7 +23,7 @@ jQuery(function() {
     
     var errorCounter = 0;
     
-    alert("Gonna strike");
+    // alert("Gonna strike");
     $("table#mca input.td-value").each(function(){
       var currentInput = $(this);
       
@@ -72,8 +60,8 @@ jQuery(function() {
         }
       }
     });    
-
-    alert("errorCounter = " + errorCounter);
+    // 
+    // alert("errorCounter = " + errorCounter);
     
     if( errorCounter > 0 ){
       alert("Ada " + errorCounter + " error! Perbaiki isian yang berwarna merah!");
@@ -99,27 +87,8 @@ jQuery(function() {
       // alert("The content of target_category_id_container is " + $("input#target_category_id_container").attr('value') );
       // alert("The content of target_company_id_container is " + $("input#target_company_id_container").attr('value') );
     }
-    
-    
-    
-    
   });
     
-
-/*
-Simple model; though it is more complicated in which the unit model should
-change based on classification 
-
-Category will affect the Classification 
-
-Manufacturer will affect the UnitModel shown
-
-EngineBrand will affect the EngineModel shown
-
-However, due to time constraint, let them self-filter, better space to breathe
-
-*/
-
   jQuery("table#mca td.real-availability, table#mca td.target-availability").hover(
     function () {
       $(this).addClass("onHover");
@@ -129,45 +98,155 @@ However, due to time constraint, let them self-filter, better space to breathe
     }
   );
 
-  // chart1 = new Highcharts.Chart({
-  //    chart: {
-  //      renderTo: 'chart-container-1',
-  //      defaultSeriesType: 'bar'
-  //    },
-  //    title: {
-  //      text: 'Monthly Control Availability'
-  //    },
-  //    xAxis: {
-  //      categories: ['1','2','3','4','5','6','7','8','9','10',
-  //                  '11','12','13','14','15','16','17','18','19','20',
-  //                  '21','22','23','24','25','26','27','28','29','30']
-  //    },
-  //    yAxis: {
-  //      title: {
-  //        text: 'Physical Availability (A2B)'
-  //      }
-  //    },
-  //    series: [{
-  //      type: 'column',
-  //      name: 'TBP',
-  //      data: [29, 51, 68, 94, 96, 91, 97, 1, 55, 17, 72, 44, 31, 12, 6, 87, 64, 69, 68, 50, 16, 89, 65, 37, 46, 12, 25, 84, 12, 54] 
-  //    }, {
-  //      type: 'column',
-  //      name: 'GPS',
-  //      data: [61, 45, 47, 1, 44, 27, 95, 53, 21, 15, 78, 11, 94, 23, 36, 70, 31, 88, 75, 26, 90, 90, 5, 19, 14, 82, 74, 62, 30, 31]
-  //    }, {
-  //      type: 'column',
-  //      name: 'KPT',
-  //      data: [79, 22, 42, 53, 83, 62, 20, 42, 10, 52, 34, 64, 5, 56, 73, 69, 25, 18, 0, 53, 6, 11, 12, 68, 21, 6, 52, 94, 97, 26]
-  //    }, {
-  //      type: 'spline',
-  //      name: 'target',
-  //      data: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80] 
-  //    }]
-  //    });
-
-
-
-  
+  jQuery("a.graph-starter").click( function(){
+    //destroy array 
+    // for( var i =0; i <chartArray.length; i++ ){
+    //   chartArray[i] = null; 
+    // }
+    destroyChart();
+    
+    
+    var companyName = $(this).text();
+    alert(companyName + " is clicked");
+    // getting the x-axis ( days ), can be used for all categories
+    var days_array = new Array(); 
+    alert("gonna call getDays()");
+    days_array = getDays();
+    
+    
+    // getting the location to plot the graph
+    // 1 company has N graphs, where N == total number of categories in that company
+    var company_id = $(this).attr('id').split("_")[1];
+    
+    var graph_data_collection = [];
+    
+    // get the category text, target_value, real_value 
+    $("table#mca tr.body").each(function( ){
+      if( $(this).attr('company_id') != company_id ){
+        return true;  // continue
+      }else{
+        var current_row = $(this);
+        var row_info = {};
+        row_info["category_id"] = current_row.attr('category_id');
+        row_info["category_name"] = $("td.category-name", current_row).text();
+        
+        
+        // get the category_target
+        var td = $("td.target-availability", current_row);
+        var span_value = $("span", td);
+        var target_array = new Array();
+        
+        
+        if( $("span" , td ).hasClass("still-nil") ){
+          for( var j =0; j < days_array.length ; j++ ){
+            target_array[j] = 0;
+          }
+        } else {
+          var value = parseFloat( span_value.text() );
+          for( var j = 0; j < days_array.length; j++) {
+            target_array[j] =  value;
+          }
+        }
+        
+        row_info["category_target_array"] = target_array;
+        
+        
+        
+        // get the category_real
+        var real_array = new Array();
+        $("td.real-availability", current_row).each(function(){
+          var td = $(this);
+          var span_value = $("span" , td);
+          
+          if( $("span", td).hasClass("still-nil") ){
+            real_array.push( 0 ) ;
+          } else{
+            var value = parseFloat( span_value.text() );
+            real_array.push( value );
+          }
+        });
+        
+        row_info["category_real_array"] = real_array;
+        console.log("the category id is " + row_info["category_id"]);
+        for( var k = 0 ; k < real_array.length; k++){
+          console.log("k=" + k + ", value is " + real_array[k]);
+        }
+        
+        graph_data_collection.push( row_info );
+      }
+    });
+    
+    // alert( graph_data_collection.length );
+    
+    plot_graph(graph_data_collection , company_id, companyName , days_array);   
+      
+    return false;
+  });  
 });
 
+function plot_graph( arrayOfData  ,company_id ,companyName, days_array) {
+  for( var i=0; i< arrayOfData.length; i++ ){
+    var graphData = arrayOfData[i];
+    
+    
+    //creating the optionsObject 
+    
+    var optionsObject =  { 
+      chart: {
+        renderTo: 'chart-container-' + graphData["category_id"] ,
+        defaultSeriesType: 'bar'
+      },
+      title: {
+        text: 'Monthly Control Availability'
+      }, 
+      xAxis: {
+        categories: days_array
+      },
+      yAxis: {
+        title: {
+          text: graphData["category_name"]
+        }
+      },
+      series: [
+        {
+          type: 'column',
+          name: companyName ,
+          data: graphData["category_real_array"] 
+        },
+        {
+          type: 'spline',
+          name: 'target',
+          data: graphData["category_target_array"] 
+        }
+      ]
+    };
+    
+    
+    
+    
+    if( chartArray[i] == undefined){
+      chartArray[i]  = new Highcharts.Chart( optionsObject );
+    }
+    
+    //show the drawing div for this graph
+    // hide the current table
+  }
+}
+
+
+function  destroyChart(){
+  for( var i =0; i <chartArray.length; i++ ){
+     chartArray[i] = null; 
+   }
+}
+
+function getDays(){
+  var days_array = new Array();
+  var total_days = $("tr.header-month-number td.day").length; 
+  
+  for( var i =0 ; i < total_days ; i++) {
+    days_array[i] = i+1;
+  }
+  
+  return days_array;
+}
