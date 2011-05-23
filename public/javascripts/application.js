@@ -1,13 +1,15 @@
 var chartArray= new Array();
+
 jQuery(function() {  
 
   jQuery("td.target-availability, td.real-availability").click(function(){
-    var $theTd = $(this);
-    $("span.td-value", $theTd).hide();
-    $("input.td-value", $theTd).attr('changed', 1 );
-    $("input.td-value", $theTd).show().focus();
-
-    return false;
+    if( $(this).hasClass( "entry-view") ){
+      var $theTd = $(this);
+      $("span.td-value", $theTd).hide();
+      $("input.td-value", $theTd).attr('changed', 1 );
+      $("input.td-value", $theTd).show().focus();
+      return false;
+    }
   });
   
   jQuery("input#availability_submit").click(function(){
@@ -99,25 +101,14 @@ jQuery(function() {
   );
 
   jQuery("a#back-mca").click( function(){
-    $("table#mca").show();
-    $("form#target-availability-form").show();
-    $("div#month-navigator").show();
-    $("div#data_plot").hide();
+    showTableHideChart();
     return false;
   });
 
   jQuery("a.graph-starter").click( function(){
-    //destroy array 
-    // for( var i =0; i <chartArray.length; i++ ){
-    //   chartArray[i] = null; 
-    // }
-    destroyChart();
-    
-    // hide the table, show the chart
-    $("table#mca").hide();
-    $("form#target-availability-form").hide();
-    $("div#month-navigator").hide();
-    $("div#data_plot").show();
+
+    destroyChart();    
+    showChartHideTable();
     
     
     var companyName = $(this).text();
@@ -181,11 +172,6 @@ jQuery(function() {
         });
         
         row_info["category_real_array"] = real_array;
-        // console.log("the category id is " + row_info["category_id"]);
-        // for( var k = 0 ; k < real_array.length; k++){
-        //   console.log("k=" + k + ", value is " + real_array[k]);
-        // }
-        
         graph_data_collection.push( row_info );
       }
     });
@@ -234,15 +220,10 @@ function plot_graph( arrayOfData  ,company_id ,companyName, days_array) {
       ]
     };
     
-    
-    
-    
     if( chartArray[i] == undefined){
       chartArray[i]  = new Highcharts.Chart( optionsObject );
     }
     
-    //show the drawing div for this graph
-    // hide the current table
   }
 }
 
@@ -262,4 +243,19 @@ function getDays(){
   }
   
   return days_array;
+}
+
+
+function showChartHideTable(){
+  $("table#mca").hide();
+  $("form#target-availability-form").hide();
+  $("div#month-navigator").hide();
+  $("div#data_plot").show();
+}
+
+function showTableHideChart() {
+  $("table#mca").show();
+  $("form#target-availability-form").show();
+  $("div#month-navigator").show();
+  $("div#data_plot").hide();
 }
