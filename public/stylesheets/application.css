@@ -1,4 +1,11 @@
 .hidden { display:none;}
+h1 { font-size: 18px; font-weight: bold;}
+ a.selected { background-color: rgb(150,150,150); color: white;}
+div#minor-navigator { margin-bottom: 20px; margin-top:5px;}
+div#minor-navigator ul.navigator-ul { }
+div#minor-navigator ul.navigator-ul  li { float:left; list-style:none; margin-right: 10px;}
+
+
 input.warning { background-color: red; color: white;}
 table#mca tr td { text-align:center;}
 table#mca td.real-availability { width: 50px; cursor: pointer; }

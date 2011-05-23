@@ -86,13 +86,10 @@ class BreakdownsController < ApplicationController
     @day = params[:day].to_i
     @year = params[:year].to_i 
     
-    @breakdowns = Breakdown.where( "fixed_date >  :fixed_date",  :fixed_date => Time.local(@year, @month, @day) )
+    @breakdowns = Breakdown.where( "fixed_date >  :fixed_date AND breakdown_date <= :breakdown_date", 
+                  :fixed_date => Time.local(@year, @month, @day) , 
+                  :breakdown_date => Time.local(@year, @month, @day) )
     
-    # @breakdowns = Breakdown.find(:all, :conditions => {
-    #   :month => @month, 
-    #   :day => @day,
-    #   :year => @year,
-    #   
-    # })
+
   end
 end

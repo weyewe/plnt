@@ -1,57 +1,104 @@
 <div id="major-navigator">
   
   <% if current_user.has_role? :entry %>
-    <%= link_to "Admin" , companies_url %>
+    <% if admin_controller_values_contains  params %>
+      <%= link_to "Admin" , companies_url , :class => "selected" %>
+    <% else %>
+      <%= link_to "Admin" , companies_url %>
+    <% end %>
   <% end %>
-  <%= link_to "Summary", availabilities_url  %>
+  
+
+  <% if summary_controller_values_contains params %> 
+    <%= link_to "Summary", availabilities_url , :class => "selected" %>
+  <% else %>
+    <%= link_to "Summary", availabilities_url %>
+  <% end %>
   <%= link_to "SignOut", destroy_user_session_url %>
 </div>
 
-<% if current_user.has_role? :entry %>
-<div id="minor-navigator">
-  <ul>
-    <li>
-      <%= link_to "+Company" , companies_url %>
-    </li>
+<% if (current_user.has_role? :entry)  &&  !(summary_controller_values_contains params) %>
+  <div id="minor-navigator" class="clearfix">
+    <ul class="navigator-ul">
+      <li>
+        <% if params[:controller] == "companies"%>
+          <%= link_to "+Company" , companies_url, :class=> "selected" %>
+        <% else %>
+          <%= link_to "+Company" , companies_url %>
+        <% end %>
+      </li>
 
-    <li>
-      <%= link_to "+Category" , categories_url %>
-    </li>
+      <li>
+        <% if params[:controller] == "categories"%>
+          <%= link_to "+Category" , categories_url, :class=> "selected" %>
+        <% else %>
+          <%= link_to "+Category" , categories_url %>
+        <% end %>
+      </li>
 
-    <li>
-      <%= link_to "+Classification" , classifications_url %>
-    </li>
+      <li>
+        <% if params[:controller] == "classifications"%>
+          <%= link_to "+Classification" , classifications_url, :class=> "selected" %>
+        <% else %>
+          <%= link_to "+Classification" , classifications_url %>
+        <% end %>
+      </li>
 
-    <li>
-      <%= link_to "+Manufacturer" , manufacturers_url %>
-    </li>
+      <li>
+        <% if params[:controller] == "manufacturers"%>
+          <%= link_to "+Manufacturer" , manufacturers_url, :class=> "selected" %>
+        <% else %>
+          <%= link_to "+Manufacturer" , manufacturers_url %>
+        <% end %>
+      </li>
 
-    <li>
-      <%= link_to "+UnitModel" , unit_models_url %>
-    </li>
+      <li>
+        <% if params[:controller] == "unit_models"%>
+          <%= link_to "+UnitModel" , unit_models_url, :class=> "selected" %>
+        <% else %>
+          <%= link_to "+UnitModel" , unit_models_url %>
+        <% end %>
+      </li>
 
-    <li>
-      <%= link_to "+EngineBrand" , engine_brands_url %>
-    </li>
+      <li>
+        <% if params[:controller] == "engine_brands"%>
+          <%= link_to "+EngineBrand" , engine_brands_url, :class=> "selected" %>
+        <% else %>
+          <%= link_to "+EngineBrand" , engine_brands_url %>
+        <% end %>
+      </li>
 
-    <li>
-      <%= link_to "+EngineModel" , engine_models_url %>
-    </li>
+      <li>
+        <% if params[:controller] == "engine_models"%>
+          <%= link_to "+EngineModel" , engine_models_url , :class=> "selected" %>
+        <% else %>
+          <%= link_to "+EngineModel" , engine_models_url  %>
+        <% end %>
+      </li>
 
-    <li>
-      <%= link_to "+UnitVehicle" , vehicle_units_url %>
-    </li>
+      <li>
+        <% if params[:controller] == "vehicle_units"%>
+          <%= link_to "+UnitVehicle" , vehicle_units_url  , :class=> "selected" %>
+        <% else %>
+          <%= link_to "+UnitVehicle" , vehicle_units_url  %>
+        <% end %>
+      </li>
     
-    <li>
-      <%= link_to "+BreakdownStatus" , breakdown_statuses_url %>
-    </li>
+      <li>
+        <% if params[:controller] == "breakdown_statuses"%>
+          <%= link_to "+BreakdownStatus" , breakdown_statuses_url, :class=> "selected" %>
+        <% else %>
+          <%= link_to "+BreakdownStatus" , breakdown_statuses_url %>
+        <% end %>
+      </li>
     
-    <li>
-      <%= link_to "+Breakdown" , breakdowns_url %>
-    </li>
-
-
-
-  </ul>
-</div>
+      <li>
+        <% if params[:controller] == "breakdowns"%>
+          <%= link_to "+Breakdown" , breakdowns_url, :class=> "selected" %>
+        <% else %>
+          <%= link_to "+Breakdown" , breakdowns_url %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 <% end %>
