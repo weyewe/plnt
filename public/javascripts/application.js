@@ -98,6 +98,14 @@ jQuery(function() {
     }
   );
 
+  jQuery("a#back-mca").click( function(){
+    $("table#mca").show();
+    $("form#target-availability-form").show();
+    $("div#month-navigator").show();
+    $("div#data_plot").hide();
+    return false;
+  });
+
   jQuery("a.graph-starter").click( function(){
     //destroy array 
     // for( var i =0; i <chartArray.length; i++ ){
@@ -105,12 +113,18 @@ jQuery(function() {
     // }
     destroyChart();
     
+    // hide the table, show the chart
+    $("table#mca").hide();
+    $("form#target-availability-form").hide();
+    $("div#month-navigator").hide();
+    $("div#data_plot").show();
+    
     
     var companyName = $(this).text();
-    alert(companyName + " is clicked");
+    // alert(companyName + " is clicked");
     // getting the x-axis ( days ), can be used for all categories
     var days_array = new Array(); 
-    alert("gonna call getDays()");
+    // alert("gonna call getDays()");
     days_array = getDays();
     
     
@@ -167,10 +181,10 @@ jQuery(function() {
         });
         
         row_info["category_real_array"] = real_array;
-        console.log("the category id is " + row_info["category_id"]);
-        for( var k = 0 ; k < real_array.length; k++){
-          console.log("k=" + k + ", value is " + real_array[k]);
-        }
+        // console.log("the category id is " + row_info["category_id"]);
+        // for( var k = 0 ; k < real_array.length; k++){
+        //   console.log("k=" + k + ", value is " + real_array[k]);
+        // }
         
         graph_data_collection.push( row_info );
       }
@@ -188,7 +202,6 @@ function plot_graph( arrayOfData  ,company_id ,companyName, days_array) {
   for( var i=0; i< arrayOfData.length; i++ ){
     var graphData = arrayOfData[i];
     
-    
     //creating the optionsObject 
     
     var optionsObject =  { 
@@ -197,7 +210,7 @@ function plot_graph( arrayOfData  ,company_id ,companyName, days_array) {
         defaultSeriesType: 'bar'
       },
       title: {
-        text: 'Monthly Control Availability'
+        text: 'Monthly Control Availability '  +graphData["category_name"]
       }, 
       xAxis: {
         categories: days_array

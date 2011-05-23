@@ -8,3 +8,5 @@ table#mca tr.header-company td { text-align:left; cursor: pointer;}
 table#mca td.category-name { width : 150px;}
 table#mca td.onHover { background-color: rgb(230,230,230);}
 table#mca td a { text-decoration : none;}
+
+div.plotted-graph { margin-bottom: 30px;}
