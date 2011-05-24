@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   ADMIN_CONTROLLER = %w"companies categories classifications manufacturers unit_models engine_brands 
-                          engine_models unit_vehicles breakdown_statuses breakdowns"
+                          engine_models vehicle_units breakdown_statuses breakdowns"
                           
   
 

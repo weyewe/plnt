@@ -41,6 +41,13 @@ class BreakdownsController < ApplicationController
   # POST /breakdowns.xml
   def create
     @breakdown = Breakdown.new(params[:breakdown])
+    if params[:breakdown][:is_fixed].to_i == 0 
+      @breakdown.is_fixed = false
+      @breakdown.fixed_date = nil
+    else
+      @breakdown.is_fixed = true
+    end
+    
 
     respond_to do |format|
       if @breakdown.save
