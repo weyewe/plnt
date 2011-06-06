@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   has_many :classifications
   has_many :availibilities
   has_many :breakdowns
+  
   def self.selections
     category_selections_result = {}
     

@@ -1,7 +1,18 @@
 var chartArray= new Array();
 
 jQuery(function() {  
-
+  // alter browser's backspace behavior
+  $(document).keydown(function(e) {
+  var element = e.target.nodeName.toLowerCase();
+  if (element != 'input' && element != 'textarea') {
+      if (e.keyCode === 8) {
+          return false;
+      }
+  }
+  });
+  
+  
+  // editing the availability table
   jQuery("td.target-availability, td.real-availability").click(function(){
     if( $(this).hasClass( "entry-view") ){
       var $theTd = $(this);
@@ -182,13 +193,57 @@ jQuery(function() {
       
     return false;
   });  
+  
+  
+  // init comboselect during $(document).ready( function() {} );
+  // comboselect
+  $("select.combo-select").live({
+      'change': function() {
+          var text = $(this).find(":selected").text();
+          console.log("The selected text is " + text);
+          propagateChanges( $(this) );
+      },
+      'keyup': function() {
+          $(this).change();
+      }
+  });
 });
+
+function propagateChanges( select_dom ){
+  var dependant_id = select_dom.find(":selected").attr("id");
+  
+  var targetPropagation = select_dom.attr("targetPropagation");
+  var targetCounter = 0;
+  $("select#" + targetPropagation + " option ").each ( function () {
+    var option = $(this);
+    var selected_option;
+    if( option.attr("dependant") !=   dependant_id ){
+      option.hide();
+    }else{
+      option.show();
+      targetCounter++;
+      selected_option = option;
+    }
+  });
+    
+  if( targetCounter == 0 ){
+    // doNothing()
+  }else{
+    // set the current selected option
+    $this.val( selected_option.val() );
+    // and if there is nextTargetPropagation, do it
+    var nextTargetPropagation = selected_option.attr("targetPropagation") ;
+    if( nextTargetPropagation == undefined || nextTargetPropagation == "" ){
+      // don't do it
+    }else{
+      propagateChanges( $("select#" + nextTargetPropagation ) );
+    }
+  }
+}
 
 function plot_graph( arrayOfData  ,company_id ,companyName, days_array) {
   for( var i=0; i< arrayOfData.length; i++ ){
     var graphData = arrayOfData[i];
-    
-    //creating the optionsObject 
     
     var optionsObject =  { 
       chart: {

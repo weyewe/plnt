@@ -3,8 +3,8 @@ class AvailabilitiesController < ApplicationController
     @availability = Availability.new 
     
     if params[:direction].nil? 
-      @month = Time.now.month
-      @year = Time.now.year
+      @month = params[:month] || Time.now.month
+      @year = params[:year] || Time.now.year
       @availabilities = Availability.find(:all, :conditions => {
         :year => @year.to_i,
         :month => @month.to_i
@@ -27,7 +27,7 @@ class AvailabilitiesController < ApplicationController
   
   def create
     Availability.handle_data( params )
-    redirect_to availabilities_url
+    redirect_to availabilities_url( :year => params[:year], :month => params[:month])
   end
 end
 

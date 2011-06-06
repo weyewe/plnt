@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
   include Combo
   has_many :availibilities
   has_many :breakdowns
+  has_many :vehicle_units
   
   def self.selections
     manufacturer_selections_result = {}
